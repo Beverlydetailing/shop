@@ -7,10 +7,9 @@
 <style>
   /* === Global Styles === */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Arial', sans-serif; color: #333; line-height: 1.6; background: #f4f4f4; }
-  a { text-decoration: none; color: inherit; }
+  body { font-family: 'Arial', sans-serif; color: #fff; }
 
-  /* === Header / Hero Section === */
+  /* === Hero Section === */
   header {
     background: url('https://images.unsplash.com/photo-1571607384703-43de073e1c9d?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
     height: 100vh;
@@ -18,153 +17,61 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     text-align: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
   }
-  header h1 { font-size: 4rem; margin-bottom: 20px; }
-  header p { font-size: 1.5rem; margin-bottom: 40px; }
+  header h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #ff9800;
+  }
+  header p {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: #ffffff;
+  }
 
+  /* === Book Now Button === */
   button#bookNowBtn {
     background: #ff9800;
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 15px 40px;
+    font-size: 1.3rem;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
   }
-  button#bookNowBtn:hover { background: #e68900; }
-
-  /* === Form Section === */
-  #bookingForm {
-    display: none;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  button#bookNowBtn:hover {
+    background: #e68900;
   }
-  #bookingForm h2 { margin-bottom: 20px; color: #ff9800; }
-  label { display: block; margin-top: 15px; font-weight: bold; }
-  input, select, textarea {
-    width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc;
-  }
-  input[type="datetime-local"] { padding: 8px; }
-
-  #bookingForm button[type="submit"] {
-    margin-top: 20px; width: 100%; background: #ff9800; color: white;
-    font-size: 1.1rem; padding: 12px; border: none; border-radius: 8px; cursor: pointer;
-    transition: 0.3s;
-  }
-  #bookingForm button[type="submit"]:hover { background: #e68900; }
-
-  /* === Owner Dashboard === */
-  #dashboard { display: none; max-width: 90%; margin: 50px auto; }
-  #dashboard h2 { color: #ff9800; margin-bottom: 15px; }
-  table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
-  th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-  th { background: #ff9800; color: white; }
 
   /* === Footer === */
-  footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 50px; }
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+  }
 </style>
 </head>
 <body>
 
-<!-- === Hero Section === -->
 <header>
   <h1>Beverly Detailing</h1>
   <p>Professional Car Detailing & Premium Service</p>
   <button id="bookNowBtn">Book Now</button>
 </header>
 
-<!-- === Booking Form === -->
-<div id="bookingForm">
-  <h2>Book Your Detailing Service</h2>
-  <form id="form">
-    <label>Name:<input type="text" name="name" required></label>
-    <label>Email:<input type="email" name="email" required></label>
-    <label>Phone:<input type="tel" name="phone" required></label>
-
-    <label>Service:
-      <select name="service" required>
-        <option value="">Select a service</option>
-        <option value="Exterior Wash">Exterior Wash</option>
-        <option value="Interior Detail">Interior Detail</option>
-        <option value="Full Detail">Full Detail</option>
-      </select>
-    </label>
-
-    <label>Add-ons:
-      <select name="addons" multiple>
-        <option value="Pet Hair Removal">Pet Hair Removal</option>
-        <option value="Odor Treatment">Odor Treatment</option>
-        <option value="Waxing">Waxing</option>
-      </select>
-    </label>
-
-    <label>Preferred Date & Time:<input type="datetime-local" name="datetime" required></label>
-    <label>Special Notes:<textarea name="notes" rows="3"></textarea></label>
-
-    <button type="submit">Submit Booking</button>
-  </form>
-</div>
-
-<!-- === Owner Dashboard === -->
-<div id="dashboard">
-  <h2>Owner Dashboard</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th><th>Email</th><th>Phone</th><th>Service</th><th>Add-ons</th><th>Date/Time</th><th>Notes</th>
-      </tr>
-    </thead>
-    <tbody id="dashboardBody"></tbody>
-  </table>
-</div>
-
-<!-- === Footer === -->
 <footer>
   &copy; 2026 Beverly Detailing. All rights reserved.
 </footer>
 
 <script>
   const bookNowBtn = document.getElementById('bookNowBtn');
-  const bookingForm = document.getElementById('bookingForm');
-  const form = document.getElementById('form');
-  const dashboard = document.getElementById('dashboard');
-  const dashboardBody = document.getElementById('dashboardBody');
-
-  // Show/hide booking form
   bookNowBtn.addEventListener('click', () => {
-    bookingForm.style.display = bookingForm.style.display === 'none' ? 'block' : 'none';
-    bookingForm.scrollIntoView({behavior: 'smooth'});
-  });
-
-  // Handle form submission
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const phone = formData.get('phone');
-    const service = formData.get('service');
-    const addons = [...formData.getAll('addons')].join(', ') || 'None';
-    const datetime = formData.get('datetime');
-    const notes = formData.get('notes') || '';
-
-    // Add booking to dashboard
-    const row = document.createElement('tr');
-    row.innerHTML = `<td>${name}</td><td>${email}</td><td>${phone}</td><td>${service}</td><td>${addons}</td><td>${datetime}</td><td>${notes}</td>`;
-    dashboardBody.appendChild(row);
-    dashboard.style.display = 'block';
-
-    // Reset form
-    form.reset();
-    alert('Booking submitted! Check the owner dashboard below.');
+    // Redirect directly to your Google Form
+    window.location.href = 'https://docs.google.com/forms/d/1UfIUiCrnxfCLST8TEPVOUqGyqzCKV4B8mqCXlcXAuik/edit?pli=1';
   });
 </script>
 
