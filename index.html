@@ -5,6 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beverly Detailing</title>
 <style>
+  .results {
+  padding: 60px 20px;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+.result-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.result {
+  max-width: 350px;
+}
+
+.before-after {
+  display: flex;
+  gap: 10px;
+}
+
+.before-after img {
+  width: 100%;
+  border-radius: 10px;
+}
   /* === Global Styles === */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; }
@@ -247,3 +273,51 @@
 
 </body>
 </html>
+<section class="results">
+  <h2>Real Results</h2>
+
+  <div class="result-row">
+    <div class="result">
+      <h3>Floor Mats</h3>
+      <div class="before-after">
+        <div>
+          <p>Before</p>
+          <img src="dirtyfloor.jpeg" alt="Dirty floor mat">
+        </div>
+        <div>
+          <p>After</p>
+          <img src="cleanfloor.png" alt="Clean floor mat">
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <h3>Wheels</h3>
+      <div class="before-after">
+        <div>
+          <p>Before</p>
+          <img src="dirtywheel.png" alt="Dirty wheel">
+        </div>
+        <div>
+          <p>After</p>
+          <img src="cleanwheel.png" alt="Clean wheel">
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <h3>Exterior</h3>
+      <div class="before-after">
+        <div>
+          <p>Before</p>
+          <img src="dirtyrear.jpeg" alt="Dirty rear">
+        </div>
+        <div>
+          <p>After</p>
+          <img src="cleanrear.jpeg" alt="Clean rear">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
